@@ -39,7 +39,7 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
                   data?.caterories.map((item, index) => (
                     <tr key={index}>
                       <td className="p-2 whitespace-nowrap">
-                        <div className="text-left font-medium text-green-500">
+                        <div className="text-left font-medium text-gray-500">
                           {item.title}
                         </div>
                       </td>

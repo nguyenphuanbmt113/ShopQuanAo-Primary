@@ -13,6 +13,7 @@ export const Login = () => {
   });
   const navigate = useNavigate();
   const [createLogin, response] = useCreateLoginMutation();
+  console.log("response:", response)
   // const error = response?.error?.data ? response?.error?.data : [];
   const handleInputs = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -22,6 +23,8 @@ export const Login = () => {
     e.preventDefault();
     createLogin(state);
   };
+  //error
+  const error = response?.error?.data?.mes
   useEffect(() => {
     if (response.isSuccess) {
       localStorage.setItem("access_token", response?.data?.access_token);
@@ -58,6 +61,7 @@ export const Login = () => {
               onChange={handleInputs}
             />
           </div>
+          {error && <p className="text-red-500 h-[4px]">Not Authentication</p>}
           <div className="form-meta">
             <Link className="form-link">Forgot Password</Link>
           </div>
