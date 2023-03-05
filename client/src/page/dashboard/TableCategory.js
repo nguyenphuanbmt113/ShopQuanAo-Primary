@@ -9,12 +9,6 @@ export const TableCategory = React.memo(({ data, isLoading }) => {
       removeItem({ id });
     }
   };
-  // useEffect(() => {
-  //   if (response.isSuccess) {
-      
-  //   }
-    
-  // }, [response?.data?.mes])
   return (
     <>
       <div className="w-full bg-white shadow-lg rounded-sm border border-gray-200">

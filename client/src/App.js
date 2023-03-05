@@ -23,6 +23,13 @@ const App = () => {
               </PrivateRoute>
             }></Route>
           <Route
+            path="product/:page"
+            element={
+              <PrivateRoute>
+                <Product></Product>
+              </PrivateRoute>
+            }></Route>
+          <Route
             path="create-product"
             element={<ProductCreate></ProductCreate>}></Route>
           <Route path="order" element={<Product></Product>}></Route>

@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productService = createApi({
   reducerPath: "product",
+  tagTypes: "product",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:7000/api/v1/product",
     prepareHeaders: (headers, { getState }) => {
@@ -20,15 +21,18 @@ export const productService = createApi({
           body: data,
         };
       },
+      invalidatesTags: ["product"],
     }),
-    // getCategory: builder.query({
-    //   query: (data) => {
-    //     return {
-    //       url: `/get-catequery?page=${data.page}`,
-    //       method: "GET",
-    //     };
-    //   },
-    // }),
+    getProduct: builder.query({
+      query: (data) => {
+        console.log("data:", data);
+        return {
+          url: `/get-product?page=${data.page}`,
+          method: "GET",
+        };
+      },
+      providesTags: ["product"],
+    }),
     // putCategory: builder.mutation({
     //   query: (data) => {
     //     return {
@@ -57,4 +61,4 @@ export const productService = createApi({
   }),
 });
 
-export const { useCreateProductMutation } = productService;
+export const { useCreateProductMutation, useGetProductQuery } = productService;

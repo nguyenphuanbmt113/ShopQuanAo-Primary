@@ -56,3 +56,66 @@ export const createProduct = asyncHandler(async (req, res) => {
     }
   });
 });
+export const getProductsByQuery = asyncHandler(async (req, res) => {
+  try {
+    //Tách các trường đặc biệt ra khỏi query
+    const queries = { ...req.query };
+    console.log("queries:", queries);
+    const excludeFields = ["limit", "sort", "page", "fields"];
+    //xoá các query dac biet
+    excludeFields.forEach((ele) => {
+      delete queries[ele];
+    });
+    let queryString = JSON.stringify(queries);
+    console.log("queryString:", queryString);
+    queryString = queryString.replace(
+      /\b(gte|gt|lt|lte)\b/g,
+      (macthed) => `$${macthed}`
+    );
+    const formatedQueries = JSON.parse(queryString);
+    //filtering tile
+    if (queries?.title) {
+      formatedQueries.title = { $regex: queries.title, $options: "i" };
+    }
+    //số lượng sản phản thỏa mản đk !== số lượng sản phẩm trả về một lần
+    let queryCommand = Product.find(formatedQueries);
+    //sorting
+    if (req.query.sort) {
+      console.log("req.query.sort", req.query.sort);
+      const sortBy = req.query.sort.split(",").join(" ");
+      queryCommand = queryCommand.sort(sortBy);
+    }
+    //fields, limited
+    if (req.query.fields) {
+      const fieldsBy = req.query.fields.split(" ").join(" ");
+      queryCommand = queryCommand.select(fieldsBy);
+    }
+
+    if (req.query.page) {
+      const page = req.query.page * 1 || 1;
+      const limit = 7;
+      const skip = (page - 1) * limit;
+      queryCommand = queryCommand.skip(skip).limit(limit).sort("-updatedAt");
+    }
+    //pagination
+    queryCommand.exec(async (err, result) => {
+      if (err) throw new Error(err.message);
+      //số lượng sản phản thỏa mản đk
+      const counts = await Product.find(formatedQueries).countDocuments();
+      const limit = 7;
+      const totalPage = Math.ceil(counts / limit);
+      console.log("totalPage:", totalPage);
+      return res.status(200).json({
+        success: result ? true : false,
+        products: result ? result : "cannot get products",
+        counts,
+        totalPage,
+        // totalPage: Math.ceil(counts / limit)
+      });
+    });
+  } catch (err) {
+    if (err.name === "CastError")
+      return new Error(`Invalid ${err.path}: ${err.value}`);
+    return err;
+  }
+});
