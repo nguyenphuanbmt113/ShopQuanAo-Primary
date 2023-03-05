@@ -1,12 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useCreateCategoryMutation } from "../../service/categoryService";
+import Modal from "../../components/Modal/Modal";
+import { Pagination } from "../../components/Pagination/Pagination";
+import {
+  useCreateCategoryMutation,
+  useGetCategoryQuery,
+} from "../../service/categoryService";
 import "./Category.scss";
 import { TableCategory } from "./TableCategory";
 export const Category = () => {
   const [category, setCateory] = useState("");
   const [createCategory, response] = useCreateCategoryMutation();
-  console.log("response:", response);
+  let { page } = useParams();
+  if (!page) {
+    page = 1;
+  }
+  const { data, isLoading } = useGetCategoryQuery({ page: page || 1 });
   const handleSubmit = () => {
     createCategory(category);
   };
@@ -36,7 +46,16 @@ export const Category = () => {
         Create
       </div>
       <div className="mt-8">
-        <TableCategory></TableCategory>
+        {data && (
+          <>
+            <TableCategory data={data} isLoading={isLoading}></TableCategory>
+            <Pagination
+              page={parseInt(page)}
+              totalPage={parseInt(data?.totalPages)}
+              path="dashboard/category"
+              count={data?.count}></Pagination>
+          </>
+        )}
       </div>
     </div>
   );

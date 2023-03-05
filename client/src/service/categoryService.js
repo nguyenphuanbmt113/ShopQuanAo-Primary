@@ -5,7 +5,6 @@ export const categoryService = createApi({
     baseUrl: "http://localhost:7000/api/v1/category",
     prepareHeaders: (headers, { getState }) => {
       const accessToken = getState().authReducer.accessToken;
-      console.log("access_token:", accessToken);
       if (accessToken) {
         headers.set("authorization", `Bearer ${accessToken}`);
       }
@@ -16,7 +15,6 @@ export const categoryService = createApi({
   endpoints: (builder) => ({
     createCategory: builder.mutation({
       query: (data) => {
-        console.log("data:", data);
         return {
           url: `/create`,
           method: "POST",
@@ -24,7 +22,46 @@ export const categoryService = createApi({
         };
       },
     }),
+    getCategory: builder.query({
+      query: (data) => {
+        return {
+          url: `/get-catequery?page=${data.page}`,
+          method: "GET",
+        };
+      },
+    }),
+    putCategory: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/update/${data.id}`,
+          method: "PUT",
+          body: { title: data.input },
+        };
+      },
+    }),
+    deleteCategory: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/delete/${data.id}`,
+          method: "DELETE",
+        };
+      },
+    }),
+    allCategory: builder.query({
+      query: () => {
+        return {
+          url: `/all`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useCreateCategoryMutation } = categoryService;
+export const {
+  useCreateCategoryMutation,
+  useGetCategoryQuery,
+  useAllCategoryQuery,
+  usePutCategoryMutation,
+  useDeleteCategoryMutation,
+} = categoryService;
