@@ -43,12 +43,13 @@ export const createProduct = asyncHandler(async (req, res) => {
           stock: parseInt(parsedData.stock),
           category: parsedData.category,
           colors: parsedData.colors,
-          sizes: parsedData.sizesList,
+          sizes: JSON.parse(fields.sizes),
           image1: images["image1"],
           image2: images["image2"],
           image3: images["image3"],
           description: fields.description,
         });
+        console.log("response:", response);
         return res.status(200).json({ msg: "Product has created", response });
       } catch (error) {
         console.log(">>>>>>>.check :", error);
@@ -60,14 +61,13 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
   try {
     //Tách các trường đặc biệt ra khỏi query
     const queries = { ...req.query };
-    console.log("queries:", queries);
     const excludeFields = ["limit", "sort", "page", "fields"];
     //xoá các query dac biet
     excludeFields.forEach((ele) => {
       delete queries[ele];
     });
     let queryString = JSON.stringify(queries);
-    console.log("queryString:", queryString);
+
     queryString = queryString.replace(
       /\b(gte|gt|lt|lte)\b/g,
       (macthed) => `$${macthed}`
@@ -81,7 +81,6 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
     let queryCommand = Product.find(formatedQueries);
     //sorting
     if (req.query.sort) {
-      console.log("req.query.sort", req.query.sort);
       const sortBy = req.query.sort.split(",").join(" ");
       queryCommand = queryCommand.sort(sortBy);
     }
@@ -104,7 +103,6 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
       const counts = await Product.find(formatedQueries).countDocuments();
       const limit = 7;
       const totalPage = Math.ceil(counts / limit);
-      console.log("totalPage:", totalPage);
       return res.status(200).json({
         success: result ? true : false,
         products: result ? result : "cannot get products",
@@ -117,5 +115,50 @@ export const getProductsByQuery = asyncHandler(async (req, res) => {
     if (err.name === "CastError")
       return new Error(`Invalid ${err.path}: ${err.value}`);
     return err;
+  }
+});
+export const updateProduct = asyncHandler(async (req, res) => {
+  const {
+    _id,
+    title,
+    price,
+    discount,
+    stock,
+    colors,
+    sizes,
+    description,
+    category,
+  } = req.body;
+  if (_.isEmpty()) {
+    throw new Error("Missing inputs");
+  }
+  const response = await Product.updateOne(
+    { _id },
+    {
+      $set: {
+        title,
+        price,
+        discount,
+        stock,
+        category,
+        colors,
+        sizes,
+        description,
+      },
+    }
+  );
+  return res.status(200).json({
+    msg: response ? "Product has updated" : "failed to update user",
+    response: response ? response : "",
+    success: response ? true : false,
+  });
+});
+export const getProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findOne({ _id: id });
+    return res.status(200).json(product);
+  } catch (error) {
+    throw new Error(error);
   }
 });

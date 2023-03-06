@@ -9,6 +9,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
 import { PrivateRoute } from "./Route/PrivateRoute";
+import { EditProduct, ProductEdit } from "./page/dashboard/EditProduct";
 const App = () => {
   return (
     <>
@@ -27,6 +28,13 @@ const App = () => {
             element={
               <PrivateRoute>
                 <Product></Product>
+              </PrivateRoute>
+            }></Route>
+          <Route
+            path="product/edit/:id"
+            element={
+              <PrivateRoute>
+                <ProductEdit></ProductEdit>
               </PrivateRoute>
             }></Route>
           <Route

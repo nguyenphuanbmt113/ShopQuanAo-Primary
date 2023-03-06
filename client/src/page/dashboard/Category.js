@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Modal from "../../components/Modal/Modal";
 import { Pagination } from "../../components/Pagination/Pagination";
 import {
   useCreateCategoryMutation,
-  useGetCategoryQuery,
+  useGetCategoryQuery
 } from "../../service/categoryService";
 import "./Category.scss";
 import { TableCategory } from "./TableCategory";

@@ -14,7 +14,7 @@ router.get(
 //   [verifyAccess, isAdmin],
 //   categoryCtr.deleteCategory
 // );
-// router.put("/update/:id", [verifyAccess, isAdmin], categoryCtr.updateCategory);
-// router.get("/:id", categoryCtr.getCategoryById);
+router.put("/update/:id", [verifyAccess, isAdmin], productCtr.updateProduct);
+router.get("/:id", productCtr.getProduct);
 
 export default router;

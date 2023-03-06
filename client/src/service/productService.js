@@ -25,12 +25,20 @@ export const productService = createApi({
     }),
     getProduct: builder.query({
       query: (data) => {
-        console.log("data:", data);
         return {
           url: `/get-product?page=${data.page}`,
           method: "GET",
         };
       },
+      providesTags: ["product"],
+    }),
+    getProductById: builder.query({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+          method: "GET",
+        };
+      }, 
       providesTags: ["product"],
     }),
     // putCategory: builder.mutation({
@@ -61,4 +69,5 @@ export const productService = createApi({
   }),
 });
 
-export const { useCreateProductMutation, useGetProductQuery } = productService;
+export const { useCreateProductMutation, useGetProductQuery, useGetProductByIdQuery } =
+  productService;
