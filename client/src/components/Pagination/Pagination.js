@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 import "./Pagi.scss";
 import { GrNext, GrPrevious } from "react-icons/gr";
 export const Pagination = ({ page, totalPage, path, count }) => {
-  console.log("count:", count);
-  console.log("path:", path);
-  console.log("totalPage:", totalPage);
-  console.log("page:", page);
   let startLoop = page; //1
   let diff = totalPage - page; //4-1=3
-  if (diff <= 3) {
+  if (diff <= 3) { 
     startLoop = totalPage - 3; //0
   }
   let endLoop = startLoop + 3;
