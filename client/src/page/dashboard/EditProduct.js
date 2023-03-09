@@ -6,7 +6,6 @@ import "react-quill/dist/quill.snow.css";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { ColorList } from "../../components/Color/Color";
-import parse from "html-react-parser";
 import { ListSizes } from "../../components/ListSize/ListSize";
 import { Spinner } from "../../components/Spinner/Spinner";
 import { useAllCategoryQuery } from "../../service/categoryService";
@@ -55,7 +54,7 @@ export const ProductEdit = () => {
   //call data
   const { data, isFetching } = useAllCategoryQuery();
   const [putProduct] = usePutProductMutation();
-  
+
   //choose Color
   const saveColors = (color) => {
     const filtered = state.colors.filter((clr) => clr.color !== color.hex);
