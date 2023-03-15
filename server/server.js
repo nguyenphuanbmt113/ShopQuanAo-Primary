@@ -14,6 +14,7 @@ app.post(
     },
   })
 );
+
 app.use(express.json());
 
 //đọc đc data object
