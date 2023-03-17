@@ -5,7 +5,7 @@ export const Footer = () => {
     <>
       <div className="fui-footer-2">
         <div className="footer">
-          <div className="footer-category">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
             <ul className="footer-list">
               <h4 className="category-name">Hỗ trợ khách hàng</h4>
               <li className="footer-item">

@@ -27,7 +27,7 @@ export const Search = () => {
           <input
             type="text"
             className="w-full h-[60px] px-5 py-2 outline-none bg-white rounded-md"
-            placeholder="Search Product"
+            placeholder="Tìm kiếm sản phẩm"
             value={value}
             onChange={handleChangeInput}
           />

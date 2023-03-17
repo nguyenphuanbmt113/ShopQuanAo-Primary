@@ -71,9 +71,9 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 </div>
               </div>
               {product?.sizes?.length > 0 && (
-                <div className="flex items-center gap-3 py-4 border-y border-gray-300">
-                  <h3 className="w-[10%] mt-3 text-xl font-medium capitalize text-gray-600 mb-1">
-                    sizes
+                <div className="gap-3 py-4 border-y border-gray-300">
+                  <h3 className="mt-3 text-md font-medium capitalize text-black mb-1">
+                    Kính Thước
                   </h3>
                   <div className="flex flex-wrap -mx-1">
                     {product &&
@@ -94,9 +94,9 @@ export const DetailProductCard = ({ product, isLoading }) => {
                 </div>
               )}
               {product && product?.colors?.length > 0 && (
-                <div className="flex items-center gap-5  py-4 border-b border-gray-300">
-                  <h3 className="w-[10%] mt-3 text-xl font-medium capitalize text-gray-600 mb-1">
-                    colors
+                <div className="py-4 border-b border-gray-300">
+                  <h3 className="mt-3 text-md font-medium capitalize text-black mb-1">
+                    Màu sắc
                   </h3>
                   <div className="flex flex-wrap -mx-1">
                     {product.colors.map((col) => (
@@ -118,7 +118,7 @@ export const DetailProductCard = ({ product, isLoading }) => {
                   </div>
                 </div>
               )}
-              <div className="flex -mx-3 items-center">
+              <div className="py-4 flex -mx-3 items-center">
                 <div className="w-full sm:w-6/12 p-3">
                   <Quantity quantity={quantity} inc={inc} dec={dec} />
                 </div>

@@ -8,6 +8,6 @@ router.post(
   express.raw({ type: "application/json" }),
   paymentCtr.handlerWebhook
 );
-router.get("/verify-payment/:id", verifyAccess, paymentCtr.paymentVerify);
+
 
 export default router;

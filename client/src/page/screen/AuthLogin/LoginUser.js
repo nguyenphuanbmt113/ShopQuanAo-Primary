@@ -19,7 +19,7 @@ export const LoginUser = () => {
       toast.success("Login success");
       localStorage.setItem("access_token_user", response?.data?.access_token);
       dispatch(setAccessTokenUser(response.data.access_token));
-      navigate("/home");
+      navigate("/");
     }
   }, [response.isSuccess]);
   useEffect(() => {
