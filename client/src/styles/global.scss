@@ -72,5 +72,5 @@
   @apply bg-white;
 }
 .hidden-bar {
-  @apply absolute shadow-md transition-all;
+  @apply absolute shadow-md transition-all translate-x-[-1000px];
 }
