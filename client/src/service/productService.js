@@ -25,9 +25,11 @@ export const productService = createApi({
     }),
     getProduct: builder.query({
       query: (data) => {
+        console.log("data:", data);
         return {
-          url: `/get-product?page=${data.page}`,
+          url: `/get-product`,
           method: "GET",
+          params: { ...data },
         };
       },
       providesTags: ["product"],

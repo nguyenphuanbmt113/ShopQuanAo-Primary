@@ -9,8 +9,6 @@ import { RelativeProduct } from "./RelativeProduct";
 export const ProductDetail = () => {
   const { id } = useParams();
   const { data, isLoading } = useGetProductByIdQuery(id);
-  console.log("ProductDetail:", data);
-
   return (
     <>
       <NavHome detailpage="detailpage"></NavHome>
