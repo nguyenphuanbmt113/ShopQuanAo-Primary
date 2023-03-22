@@ -17,6 +17,7 @@ import { OrderDashBoard } from "./page/dashboard/OrderDashBoard";
 import { OrderDetail } from "./page/dashboard/OrderDetail";
 import { Product } from "./page/dashboard/Product";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
+import { UserDashboard } from "./page/dashboard/UserDashboard";
 import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 import { Account } from "./page/screen/Account/Account";
 import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
@@ -86,6 +87,13 @@ const App = () => {
                 <DashBoard></DashBoard>
               </PrivateRoute>
             }>
+            <Route
+              path="user"
+              element={
+                <PrivateRoute>
+                  <UserDashboard></UserDashboard>
+                </PrivateRoute>
+              }></Route>
             <Route
               path="product"
               element={
