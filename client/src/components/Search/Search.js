@@ -11,8 +11,7 @@ export const Search = () => {
 
   const navigate = useNavigate();
   const [value, setValue] = useState("");
-  console.log("value:", value);
-  const { data, isFetching, refetch } = useGetProductSearchQuery({
+  const { data } = useGetProductSearchQuery({
     keyword: value,
   });
 
@@ -34,9 +33,6 @@ export const Search = () => {
       dispatch(toggleSearchbar());
     }
   };
-  useEffect(() => {
-    refetch();
-  }, [refetch, value]);
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[10] w-full h-full">
