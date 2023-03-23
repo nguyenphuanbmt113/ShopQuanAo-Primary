@@ -59,6 +59,7 @@ export const categoryService = createApi({
           body: { title: data.input },
         };
       },
+      invalidatesTags: ["category"],
     }),
     deleteCategory: builder.mutation({
       query: (data) => {
@@ -67,6 +68,7 @@ export const categoryService = createApi({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["category"],
     }),
     allCategory: builder.query({
       query: () => {
@@ -75,6 +77,7 @@ export const categoryService = createApi({
           method: "GET",
         };
       },
+      providesTags: ["category"],
     }),
   }),
 });
