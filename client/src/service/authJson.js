@@ -31,6 +31,7 @@ export const authJson = createApi({
           body: data,
         };
       },
+      invalidatesTags: ["auth"],
     }),
     createLoginUser: builder.mutation({
       query: (data) => ({
@@ -38,6 +39,7 @@ export const authJson = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["auth"],
     }),
     register: builder.mutation({
       query: (data) => ({
@@ -45,6 +47,7 @@ export const authJson = createApi({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["auth"],
     }),
     getUsers: builder.query({
       query: (data) => ({
@@ -52,11 +55,30 @@ export const authJson = createApi({
         method: "GET",
         params: data,
       }),
+      providesTags: ["auth"],
+    }),
+    block: builder.mutation({
+      query: (data) => ({
+        url: `/block`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
+    }),
+    unblock: builder.mutation({
+      query: (data) => ({
+        url: `/unblock`,
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["auth"],
     }),
   }),
 });
 
 export const {
+  useBlockMutation,
+  useUnblockMutation,
   useGetUsersQuery,
   useCreateLoginMutation,
   useForgotPasswordMutation,

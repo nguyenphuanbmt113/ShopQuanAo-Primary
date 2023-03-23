@@ -8,5 +8,7 @@ router.post("/login-user", handleCtr.loginUser);
 router.post("/forgotPassword", handleCtr.fotgotPassword);
 router.put("/resetpassword", handleCtr.resetPassword);
 router.get("/get-users", handleCtr.getUserQuery);
+router.put("/block", handleCtr.blockUser);
+router.put("/unblock", handleCtr.unblockUser);
 
 export default router;

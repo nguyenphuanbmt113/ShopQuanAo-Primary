@@ -35,7 +35,7 @@ var userSchema = new mongoose.Schema({
     default: false,
   },
   isBlock: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   fresh_token: {

@@ -20,7 +20,7 @@ export const ForgotPassword = () => {
         <NavHome></NavHome>
       </div>
       <div className="mt-4 max-w-xl mx-auto">
-        <div class="text-field">
+        <div className="text-field">
           <label for="username2">Email</label>
           <input
             autocomplete="off"

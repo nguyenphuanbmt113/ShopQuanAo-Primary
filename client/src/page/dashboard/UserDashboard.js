@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Spinner } from "../../components/Spinner/Spinner";
-import { useGetUsersQuery } from "../../service/authJson";
+import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Spinner } from "../../components/Spinner/Spinner";
+import { useBlockMutation, useGetUsersQuery } from "../../service/authJson";
 export const UserDashboard = () => {
   const [keyword, setKeyWord] = useState("");
+  const [block, response] = useBlockMutation();
   const navigate = useNavigate();
   const [params, setParams] = useState({});
   const { data, isFetching, refetch } = useGetUsersQuery(params);
-  console.log("data:", data);
+  console.log("datauser:", data);
   const handlerSearch = () => {
     setParams({
       ...params,
@@ -20,15 +21,13 @@ export const UserDashboard = () => {
     });
     refetch();
   };
+  const handleLock = (id) => {
+    block({ id });
+  };
   return (
     <>
       <div>
         <div className="flex items-center gap-4">
-          <Link
-            to="/dashboard/create-product"
-            className="px-3 py-2 bg-blue-500 text-white rounded-md">
-            Tạo Sản Phẩm
-          </Link>
           <div className="w-[300px] h-[40px] bg-white px-3 relative rounded-md">
             <input
               type="text"
@@ -65,6 +64,9 @@ export const UserDashboard = () => {
                           <div className="font-semibold text-left">Email</div>
                         </th>
                         <th className="p-2 whitespace-nowrap text-black text-md">
+                          <div className="font-semibold text-left">Khóa</div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap text-black text-md">
                           <div className="font-semibold text-left">
                             Thao tác
                           </div>
@@ -88,6 +90,18 @@ export const UserDashboard = () => {
                             <td className="p-2 whitespace-nowrap text-black text-md">
                               <div className="text-left font-medium text-gray-500">
                                 {item?.email}
+                              </div>
+                            </td>
+                            <td className="p-3 whitespace-nowrap text-black text-md">
+                              <div
+                                className="flex items-center mb-4"
+                                onClick={() => handleLock(item._id)}>
+                                <input
+                                  id="default-checkbox"
+                                  type="checkbox"
+                                  checked={item.isBlock}
+                                  className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300"
+                                />
                               </div>
                             </td>
                             <td className="p-2 whitespace-nowrap text-black text-md flex items-center gap-3">

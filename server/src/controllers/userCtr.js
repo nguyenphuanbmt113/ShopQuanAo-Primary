@@ -158,3 +158,37 @@ export const getUserQuery = asyncHandler(async (req, res) => {
     return err;
   }
 });
+export const blockUser = asyncHandler(async (req, res) => {
+  const { id } = req.body;
+  console.log("id:", req.body);
+  if (!id) throw new Error("Missing req.body");
+  const userFind = await User.findById(id);
+  if (userFind) {
+    const user = await User.findByIdAndUpdate(
+      id,
+      {
+        isBlock: !userFind.isBlock,
+      },
+      { new: true }
+    );
+    return res.status(200).json({
+      mes: "Block user is success!",
+      user,
+    });
+  }
+});
+export const unblockUser = asyncHandler(async (req, res) => {
+  const { id } = req.body;
+  if (!id) throw new Error("Missing req.body");
+  const user = await User.findByIdAndUpdate(
+    id,
+    {
+      isBlock: false,
+    },
+    { new: true }
+  );
+  return res.status(200).json({
+    mes: "UnBlock user is success!",
+    user,
+  });
+});

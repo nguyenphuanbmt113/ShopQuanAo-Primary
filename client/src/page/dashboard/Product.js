@@ -73,8 +73,8 @@ export const Product = () => {
             <BsSearch></BsSearch>
           </div>
         </div>
-        <div class="flex justify-center">
-          <div class="lg:w-60 h-[40px]">
+        <div className="flex justify-center">
+          <div className="lg:w-60 h-[40px]">
             <select
               data-te-select-init
               className="h-full w-full px-1 rounded-md"

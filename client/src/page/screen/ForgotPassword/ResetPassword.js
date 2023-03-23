@@ -27,7 +27,7 @@ export const ResetPassword = () => {
         <NavHome></NavHome>
       </div>
       <div className="mt-4 max-w-xl mx-auto">
-        <div class="text-field">
+        <div className="text-field">
           <label for="username2">Password</label>
           <input
             autocomplete="off"
