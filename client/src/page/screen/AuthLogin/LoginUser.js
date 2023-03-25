@@ -75,14 +75,22 @@ export const LoginUser = () => {
                   value={`${!response.isLoading ? "Đăng Nhập" : "Loading..."}`}
                   className="mt-4 bg-blue-400 w-full text-center uppercase py-4 px-2 text-white text-sm"
                   onClick={handleSubmit}></input>
-                <div className="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-300">
-                  Bạn chưa có tài khoản?
-                  <Link
-                    to="/register"
-                    className="text-orange hover:underline cursor-pointer">
-                    Đăng Ký
-                  </Link>
-                  .
+                <div className="flex items-center justify-between">
+                  <div className="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-300">
+                    <Link
+                      to="/forgot-password"
+                      className="text-orange hover:underline cursor-pointer">
+                      Quên mật khẩu ?
+                    </Link>
+                  </div>
+                  <div className="mt-8 text-center text-sm font-medium text-gray-500 dark:text-gray-300">
+                    Bạn chưa có tài khoản?
+                    <Link
+                      to="/register"
+                      className="ml-2 text-orange hover:underline cursor-pointer">
+                      Đăng Ký
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

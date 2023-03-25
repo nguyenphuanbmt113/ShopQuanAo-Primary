@@ -11,7 +11,7 @@ export const OrderUser = () => {
   if (page) page = 1;
   const { data, isFetching } = useGetOrderUserQuery({
     page,
-    userId: dataUser._id,
+    userId: dataUser?._id,
   });
   return (
     <>
@@ -118,7 +118,7 @@ export const OrderUser = () => {
                           </td>
                           <td className="p-2 whitespace-nowrap text-black text-md">
                             <Link
-                              to={`/user/detail-order/${item._id}`}
+                              to={`/user/detail-order/${item?._id}`}
                               className="px-2 py-1 bg-yellow-500 text-white rounded-md font-medium text-center">
                               Chi tiết
                             </Link>
