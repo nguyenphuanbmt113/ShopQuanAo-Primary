@@ -49,7 +49,9 @@ export const Home = () => {
           <div className="container mx-auto sm:mb-7 sm:order-1 md:order-2">
             <section className="text-center text-gray-800">
               <div className="max-w-[700px] mx-auto px-3 lg:px-6">
-                <h2 className="text-3xl font-bold mb-5">Liên hệ với chúng tôi</h2>
+                <h2 className="text-3xl font-bold mb-5 text-blue-500">
+                  Liên hệ với chúng tôi
+                </h2>
                 <form>
                   <div className="form-group mb-6">
                     <input
@@ -113,7 +115,7 @@ export const Home = () => {
                 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
               "
                       id="exampleFormControlTextarea13"
-                      rows="8"
+                      rows="7"
                       placeholder="Message"></textarea>
                   </div>
 
@@ -122,7 +124,7 @@ export const Home = () => {
                     className="
               w-full
               px-6
-              py-2.5
+              py-4
               bg-blue-600
               text-white
               font-medium
