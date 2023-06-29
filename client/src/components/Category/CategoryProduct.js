@@ -27,7 +27,7 @@ export const CategoryProduct = () => {
       ))}
     </div>
   ) : (
-    data.caterories.length > 0 && (
+    data?.caterories.length > 0 && (
       <Swiper
         slidesPerView={5}
         spaceBetween={50}

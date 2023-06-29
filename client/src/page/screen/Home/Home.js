@@ -26,7 +26,7 @@ export const Home = () => {
         </div>
       </div>
       {!isFetching ? (
-        data.caterories.length > 0 &&
+        data?.caterories.length > 0 &&
         data?.caterories?.map((category, index) => (
           <div className="my-bigcontainer px-5 mt-[30px]" key={category._id}>
             <HomeProduct category={category} homepage={true}></HomeProduct>

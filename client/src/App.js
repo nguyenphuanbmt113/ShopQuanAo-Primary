@@ -4,12 +4,15 @@ import "react-toastify/dist/ReactToastify.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./App.scss";
+import { PrivateRoute } from "./Route/PrivateRoute";
+import { UserAuth } from "./Route/UserRoute/UserAuth";
+import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
 import { Login } from "./components/Login/Login";
-import { ProtectChangeRoute } from "./components/ProtectChangeRoute/ProtectCHnageRoute";
 import AutoScrollToTop from "./components/ScrollToTop/AutoScrollToTop";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { LayoutLogin } from "./layout/layoutLogin";
 import { LayoutRegister } from "./layout/layoutRegister";
+import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 import { Category } from "./page/dashboard/Category";
 import { DashBoard } from "./page/dashboard/DashBoard";
 import { ProductEdit } from "./page/dashboard/EditProduct";
@@ -18,7 +21,6 @@ import { OrderDetail } from "./page/dashboard/OrderDetail";
 import { Product } from "./page/dashboard/Product";
 import { ProductCreate } from "./page/dashboard/ProductCreate";
 import { UserDashboard } from "./page/dashboard/UserDashboard";
-import { ProductDetail } from "./page/ProductDetail/ProductDetail";
 import { Account } from "./page/screen/Account/Account";
 import { LoginUser } from "./page/screen/AuthLogin/LoginUser";
 import { RegisterUser } from "./page/screen/AuthLogin/RegisterUser";
@@ -28,12 +30,9 @@ import { DetailOrder } from "./page/screen/DetailOrder/DetailOrder";
 import { ForgotPassword } from "./page/screen/ForgotPassword/ForgotPassword";
 import { ResetPassword } from "./page/screen/ForgotPassword/ResetPassword";
 import { Home } from "./page/screen/Home/Home";
-import { Order } from "./page/screen/Orders/Order";
 import { OrderUser } from "./page/screen/OrderUser";
+import { Order } from "./page/screen/Orders/Order";
 import { SearchProduct } from "./page/screen/SearchProduct/SearchProduct";
-import { PrivateRoute } from "./Route/PrivateRoute";
-import { UserAuth } from "./Route/UserRoute/UserAuth";
-import { UserRouteProtect } from "./Route/UserRoute/UserRoute";
 const App = () => {
   return (
     <>
