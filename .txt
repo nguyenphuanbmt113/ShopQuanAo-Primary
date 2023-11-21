@@ -1,0 +1,8 @@
+1. tạo nhánh phụ features 1: git checkout -b <TEN>
+2. lay commit truoc do: git diff 6aaffeedbb1f0817383d04c57d306743657b3fa4
+3. day len hanh phu
+  - git add .
+  - git commit -m "login & register"
+  - git push origin <TEN>
+
+4. day vo nhanh chinh: add vo
